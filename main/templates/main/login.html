@@ -1,0 +1,13 @@
+{% extends 'main/auth.html' %}
+{% block fields %}
+    <p id="action">Вход</p>
+    <form id="form" method="post">{% csrf_token %}
+        <div class="input-container"><label><input class="input" type="text" name="username" placeholder="Имя"></label></div>
+        <div class="input-container"><label><input class="input" type="password" name="password" placeholder="Пароль"></label></div>
+        <p>Нет аккаунта? <a href="/signup">Зарегистрируйтесь!</a></p>
+        <button class="btn auth-btn" type="submit">Войти</button>
+        {% if error %}
+            <span id="error">{{ error }}</span>
+        {% endif %}
+    </form>
+{% endblock %}

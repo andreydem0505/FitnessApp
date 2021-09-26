@@ -1,0 +1,15 @@
+{% extends 'main/auth.html' %}
+{% block fields %}
+    {% load static %}
+    <a href="/"><img class="back" src="{% static 'images/back.png' %}" alt="back" width="30"></a>
+    <p id="action">История</p>
+    {% for key, value in groups.items %}
+        <h1>{{ key }}</h1>
+        <ul class="list">
+            {% for ingestion in value.1 %}
+                <li>{{ ingestion.food }} ({{ ingestion.calories }} калорий)</li>
+            {% endfor %}
+        </ul>
+        <h2 class="sum">Всего: {{ value.0 }}</h2>
+    {% endfor %}
+{% endblock %}

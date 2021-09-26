@@ -1,0 +1,61 @@
+{% extends 'main/header.html' %}
+{% block username %}
+    {{ user.username }}
+{% endblock %}
+{% block main %}
+    {% load mathfilters %}
+    <h1>Здравствуй, <span class="style">{{ user.username }}</span>!</h1>
+    <h1>Сегодня ты получил{% if user.userinfo.gender == 'Ж' %}а{% endif %} <span id="calories" class="style"></span> калорий</h1>
+    {% if difference > 0 %}
+        <h1>Тебе осталось получить <span id="difference" class="style"></span> калорий</h1>
+    {% elif difference < 0 %}
+        <h1>Ух! Ты превысил{% if user.userinfo.gender == 'Ж' %}а{% endif %} норму на <span id="difference" class="style"></span> калорий. Время заняться спортом!</h1>
+        <h1>Чтобы потратить лишние калории, ты должен сделать одно из следующих упражнений:</h1>
+        <ul>
+            <li>{{ difference|abs|intdiv:7|add:1 }} мин. отжиманий</li>
+            <li>{{ difference|abs|intdiv:8|add:1 }} мин. приседаний</li>
+            <li>{{ difference|abs|intdiv:12|add:1 }} мин. бега</li>
+            <li>{{ difference|abs|intdiv:14|add:1 }} мин. прыжков со скакалкой</li>
+        </ul>
+    {% else %}
+        <h1>Ты идеально выполнил{% if user.userinfo.gender == 'Ж' %}а{% endif %} норму!</h1>
+    {% endif %}
+    {% if user.ingestion_set.all|length > 0 %}
+        <h1>Ты съел:</h1>
+        <ul>
+            {% for ingestion in ingestions %}
+                <li>{{ ingestion.food }} ({{ ingestion.calories }} калорий)</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>А что ты съел{% if user.userinfo.gender == 'Ж' %}а{% endif %} ещё?</h1>
+    <form method="post">{% csrf_token %}
+        <label><input class="input-food" type="text" name="food" placeholder="Еда" required></label>
+        <label><input class="input-calories" step="1" type="number" name="calories" placeholder="Калории" required></label>
+        <button class="btn btn-food" type="submit">Добавить</button>
+    </form>
+    <script>
+        async function calories() {
+            let element = document.getElementById("calories");
+            let end = {{ calories }};
+            for (let i = 0; i <= end; i += Math.floor(end / 100)) {
+                element.innerHTML = String(i);
+                await new Promise(r => setTimeout(r, 10));
+            }
+            element.innerHTML = String(end);
+        }
+        async function difference() {
+            try {
+                let element = document.getElementById("difference");
+                let end = {{ difference|abs }};
+                for (let i = 0; i <= end; i += Math.ceil(end / 100)) {
+                    element.innerHTML = String(i);
+                    await new Promise(r => setTimeout(r, 10));
+                }
+                element.innerHTML = String(end);
+            } catch (e) {}
+        }
+        calories();
+        difference();
+    </script>
+{% endblock %}

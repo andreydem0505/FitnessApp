@@ -1,0 +1,26 @@
+{% extends 'main/auth.html' %}
+{% block fields %}
+    <p id="action">Регистрация</p>
+    <form id="form" method="post">{% csrf_token %}
+        <div class="input-container"><label><input class="input" type="text" name="username" placeholder="Имя" required></label></div>
+        <div class="input-container"><label><input class="input" type="password" name="password" placeholder="Пароль" required></label></div>
+        <div class="input-container"><label><input class="input" type="number" name="weight" step="1" placeholder="Вес" required></label></div>
+        <div class="input-container"><label><input class="input" type="number" name="height" step="1" pattern="\d+" placeholder="Рост" required></label></div>
+        <div class="input-container">
+            <span>Дата рождения:</span><br><br>
+            <label><input class="input" type="date" name="birthdate" required></label>
+        </div>
+        <div class="input-container">
+            <span>Пол:</span><br><br>
+            <div id="radio-group">
+                <label>М <input name="gender" type="radio" value="М" required></label>
+                <label>Ж <input name="gender" type="radio" value="Ж" required></label>
+            </div>
+        </div>
+         <p>Уже есть аккаунт? <a href="/login">Войдите!</a></p>
+        <button class="btn auth-btn" type="submit" value="Submit">Отправить</button>
+        {% if error %}
+            <span id="error">{{ error }}</span>
+        {% endif %}
+    </form>
+{% endblock %}

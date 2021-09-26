@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <header>
+        <a id="logo" href="/">FitnessApp</a>
+        <div class="dropdown">
+            <a id="username" href="/profile">{% block username %}{% endblock %}</a>
+            <div class="dropdown-content">
+                <a href="/profile">Профиль</a>
+                <a href="/history">История</a>
+                <a href="/logout" id="logout">Выйти</a>
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        {% block main %}
+        {% endblock %}
+    </div>
+{% endblock %}
