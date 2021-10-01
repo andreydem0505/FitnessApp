@@ -25,7 +25,7 @@ SECRET_KEY = 'xg-=ag&rkf5cv+s6z9st9y-6+d&4^rm^*5(pz_u0$yyq0+izhf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fitnessapp-net.herokuapp.com']
+ALLOWED_HOSTS = ['fitnessapp-net.herokuapp.com', '127.0.0.1', 'andreydem.pythonanywhere.com']
 
 
 # Application definition
