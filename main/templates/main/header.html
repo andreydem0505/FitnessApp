@@ -1,10 +1,12 @@
 {% extends 'main/base.html' %}
 {% block content %}
+    {% load static %}
     <header>
         <a id="logo" href="/">FitnessApp</a>
         <div class="dropdown">
             <a id="username" href="/profile">{% block username %}{% endblock %}</a>
-            <div class="dropdown-content">
+            <img id="hamburger" src="{% static 'images/hamburger.png' %}" alt="menu" width="30" height="30">
+            <div id="menu" class="dropdown-content">
                 <a href="/profile">Профиль</a>
                 <a href="/history">История</a>
                 <a href="/logout" id="logout">Выйти</a>
@@ -15,4 +17,5 @@
         {% block main %}
         {% endblock %}
     </div>
+    <script src="{% static 'js/hamburger.js' %}"></script>
 {% endblock %}

@@ -86,7 +86,7 @@ a {
 }
 
 header {
-    align-items: baseline;
+    align-items: center;
     background: linear-gradient(#e3e0e0, #f3f1f1);
     display: flex;
     justify-content: space-around;
@@ -132,6 +132,7 @@ h1 {
     font-size: 18px;
     padding: .5em;
     width: 10%;
+    min-width: 80px;
 }
 
 .btn-food {
@@ -177,8 +178,6 @@ ul {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-
 #logout {
     color: red;
 }
@@ -200,4 +199,11 @@ ul {
 .sum {
     width: 300px;
     margin-bottom: 50px;
+}
+
+#hamburger {
+    display: none;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
 }

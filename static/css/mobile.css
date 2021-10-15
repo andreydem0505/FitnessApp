@@ -1,0 +1,60 @@
+@media all and (max-width: 1000px) {
+    * {
+        font-size: 18px;
+    }
+
+    #container {
+        margin: 0 10%;
+    }
+
+    .input-food {
+        width: 90%;
+    }
+
+    .input-calories {
+        width: 45%;
+    }
+
+    .inline input {
+        margin-bottom: 10px;
+    }
+
+    #username {
+        display: none;
+    }
+
+    .dropdown-content {
+        top: -50%;
+        right: -100%;
+        min-width: 170px;
+        animation-duration: .3s;
+    }
+
+    .dropdown-content a {
+        padding: 20px 16px;
+    }
+
+    #hamburger {
+        display: block;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappear {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+}

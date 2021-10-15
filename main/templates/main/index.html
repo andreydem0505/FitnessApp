@@ -20,8 +20,8 @@
     {% else %}
         <h1>Ты идеально выполнил{% if user.userinfo.gender == 'Ж' %}а{% endif %} норму!</h1>
     {% endif %}
-    {% if user.ingestion_set.all|length > 0 %}
-        <h1>Ты съел:</h1>
+    {% if ingestions|length > 0 %}
+        <h1>Ты съел{% if user.userinfo.gender == 'Ж' %}а{% endif %}:</h1>
         <ul>
             {% for ingestion in ingestions %}
                 <li>{{ ingestion.food }} ({{ ingestion.calories }} калорий)</li>
@@ -29,7 +29,7 @@
         </ul>
     {% endif %}
     <h1>А что ты съел{% if user.userinfo.gender == 'Ж' %}а{% endif %} ещё?</h1>
-    <form method="post">{% csrf_token %}
+    <form method="post" class="inline">{% csrf_token %}
         <label><input class="input-food" type="text" name="food" placeholder="Еда" required></label>
         <label><input class="input-calories" step="1" type="number" name="calories" placeholder="Калории" required></label>
         <button class="btn btn-food" type="submit">Добавить</button>
